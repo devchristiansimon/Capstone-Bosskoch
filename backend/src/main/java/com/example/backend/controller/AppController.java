@@ -18,8 +18,14 @@ public class AppController {
     public List<BossKochModelReceipt> getAllBossKochData(){
         return bossKochService.getAllBossKochData();
     }
+
     @PostMapping
     public BossKochModelReceipt addNewReceipt(@RequestBody BossKochModelReceipt newReceipt){
         return bossKochService.addNewReceipt(newReceipt);
+    }
+
+    @GetMapping("{id}")
+    BossKochModelReceipt getTodoById(@PathVariable String id) {
+        return bossKochService.getById(id);
     }
 }

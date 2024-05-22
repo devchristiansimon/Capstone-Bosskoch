@@ -35,4 +35,7 @@ public class BossKochService {
         repo.save(receipt);
         return receipt;
     }
+    public BossKochModelReceipt getById(String id) {
+        return repo.getById(id);
+    }
 }
