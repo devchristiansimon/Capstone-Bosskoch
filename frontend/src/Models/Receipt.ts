@@ -1,4 +1,5 @@
 export type Receipt = {
+    id?:string;
     recipeName: string,
     additional: string,
     timeInMinutes: number,

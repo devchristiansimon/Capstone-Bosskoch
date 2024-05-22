@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 public interface BossKochRepository extends MongoRepository<BossKochModelReceipt, String> {
+    BossKochModelReceipt getById(String id);
 }
