@@ -1,13 +1,24 @@
+header{
+  height: 100px;
+  font-family: "Cambria Math";
+  text-align: center;
+}
+
+header h1{
+  font-size: 4rem;
+  margin: 0;
+}
+
 .receiptCardContainer{
   display: flex;
   flex-flow: row wrap;
   gap: 30px;
+  justify-content: center;
 }
 
 .receiptCardTitleContainer {
   display: flex;
   flex-flow: row nowrap;
-  border: 1px solid grey;
   gap: 5px;
 }
 .receiptCardTitleContainer > div {
@@ -16,17 +27,64 @@
 
 .receiptCard{
   width: 400px;
-  height: 300px;
+  height: 400px;
   border: 1px solid black;
   padding: 5px;
   display: flex;
   flex-flow: column nowrap;
 }
 
+.formfield{
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+.FormButtonContainer{
+  justify-content: center !important;
+}
+.submitButton{
+  width: 200px;
+  height: 100px;
+}
+
+.formfield div{
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+.formfield div .inRow {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.inRow div {
+  gap: 5px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.formfield div .labelInputBox{
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 5px;
+}
+
 .foodImage{
   overflow: hidden;
+  text-align: center;
 }
 .foodImage img{
-  width: 360px;
-
+  height: 90%;
+}
+.ingredientListContainer {
+  text-align: center;
+}
+.ingredientList{
+  cursor: crosshair;
+  list-style: none;
+  display: inline-block;
+  margin-right: 10px;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 5px;
 }

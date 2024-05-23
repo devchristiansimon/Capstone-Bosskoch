@@ -2,6 +2,7 @@ import {ChangeEvent, FormEvent} from "react";
 import axios from "axios";
 import {Receipt} from "../Models/Receipt.ts";
 import {Link} from "react-router-dom";
+import BlankPic from "../assets/teller.jpg"
 
 
 export default function Startpage({receiptList, newReceipt, setNewReceipt, inputValue, setInputValue, ingredients,  setIngredients }:{receiptList: Receipt[], newReceipt: Receipt, setNewReceipt: (Receipt:Receipt) => void, inputValue: string, setInputValue: (value: string) => void, ingredients: string[], setIngredients: (ingredients: string[]) => void }){
@@ -20,6 +21,10 @@ export default function Startpage({receiptList, newReceipt, setNewReceipt, input
         const key = event.target.name
         setNewReceipt({...newReceipt, [key]: event.target.value})
     }
+    const handleOnNationChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        const key = event.target.name
+        setNewReceipt({...newReceipt, [key]: event.target.value})
+    };
 
     function handleOnCheckBoxChange(event: ChangeEvent<HTMLInputElement>) {
         const key = event.target.name
@@ -49,48 +54,104 @@ export default function Startpage({receiptList, newReceipt, setNewReceipt, input
         setInputValue(event.target.value);
     };
 
+    const deleteIngredients = (index:number) => {
+        const newIngredientsList = ingredients.filter((_, i) => i !== index);
+        setIngredients(newIngredientsList);
+    };
+
+
     return(
         <>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className={"formfield"}>
                     <div>
-                        <label htmlFor={"recipeName"}>receiptName</label>
-                        <input name={"recipeName"} type={"text"} id={"recipeName"} onChange={handleOnChange}/>
-                        <label htmlFor={"additional"}>additional</label>
-                        <input name={"additional"} type={"text"} id={"additional"} onChange={handleOnChange}/>
-                        <label htmlFor={"timeInMinutes"}>timeInMinutes</label>
-                        <input name={"timeInMinutes"} type={"text"} id={"timeInMinutes"}
-                               onChange={handleOnNumberChange}/>
+                        <div className={"labelInputBox"}>
+                            <label htmlFor={"recipeName"}>Name des Gerichts</label>
+                            <input name={"recipeName"} type={"text"} id={"recipeName"} onChange={handleOnChange}/>
+                        </div>
+                        <div className={"labelInputBox"}>
+                            <label htmlFor={"additional"}>Namenszusatz</label>
+                            <input name={"additional"} type={"text"} id={"additional"} onChange={handleOnChange}/>
+                        </div>
+                        <div className={"labelInputBox"}>
+                            <label htmlFor={"timeInMinutes"}>Zeit in Minuten</label>
+                            <input name={"timeInMinutes"} type={"text"} id={"timeInMinutes"}
+                                   onChange={handleOnNumberChange}/>
+                        </div>
+                        <div className={"labelInputBox"}>
+                            <label htmlFor={"imageSrc"}>Bild URL</label>
+                            <input name={"imageSrc"} type={"text"} id={"imageSrc"} onChange={handleOnChange}/>
+                        </div>
+
                     </div>
                     <div>
-                        <label htmlFor={"nationality"}>nationality</label>
-                        <input name={"nationality"} type={"text"} id={"nationality"} onChange={handleOnChange}/>
-                        <label htmlFor={"easy"}>Leicht</label>
-                        <input name={"difficulty"} type={"radio"} id={"easy"} value={"easy"} onChange={handleOnChange}/>
-                        <label htmlFor={"easy"}>Mittel</label>
-                        <input name={"difficulty"} type={"radio"} id={"medium"} value={"medium"}
-                               onChange={handleOnChange}/>
-                        <label htmlFor={"hard"}>Schwer</label>
-                        <input name={"difficulty"} type={"radio"} id={"hard"} value={"hard"} onChange={handleOnChange}/>
-                        <label htmlFor={"ingredients"}>ingredients</label>
-                        <input name={"ingredients"} type={"text"} id={"ingredients"} value={inputValue}
-                               onChange={handleIngredientsInputChange}/>
-                        <button type={"button"} onClick={addIngredient}> Zutat Hinzufügen</button>
+                        <div className={"labelInputBox"}>
+                            <label htmlFor={"nationality"}>Nationalität</label>
+                            <select name="nationality" id="nationality" onChange={handleOnNationChange}>
+                                <option value="">Wähle die Herkunft des Gerichtes</option>
+                                <option value="Italienisch">Italienisch</option>
+                                <option value="Indisch">Indisch</option>
+                                <option value="Deutsch">Deutsch</option>
+                                <option value="Amerikanisch">Amerikanisch</option>
+                                <option value="Chinesisch">Chinesisch</option>
+                                <option value="Türkisch">Türkisch</option>
+                                <option value="Japanisch">Japanisch</option>
+                                <option value="Sonstiges">sonstiges</option>
+                            </select>
+                        </div>
+
+                        <div className={"inRow"}>
+                            <div className={"labelInputBox"}>
+                                <label htmlFor={"easy"}>Leicht</label>
+                                <input name={"difficulty"} type={"radio"} id={"easy"} value={"easy"}
+                                       onChange={handleOnChange}/>
+                            </div>
+                            <div className={"labelInputBox"}>
+                                <label htmlFor={"easy"}>Mittel</label>
+                                <input name={"difficulty"} type={"radio"} id={"medium"} value={"medium"}
+                                       onChange={handleOnChange}/>
+                            </div>
+                            <div className={"labelInputBox"}>
+                                <label htmlFor={"hard"}>Schwer</label>
+                                <input name={"difficulty"} type={"radio"} id={"hard"} value={"hard"}
+                                       onChange={handleOnChange}/>
+                            </div>
+
+                        </div>
+                        <div className={"labelInputBox"}>
+                            <label htmlFor={"ingredients"}>Zutaten</label>
+                            <input name={"ingredients"} type={"text"} id={"ingredients"} value={inputValue}
+                                   onChange={handleIngredientsInputChange}/>
+                            <button type={"button"} onClick={addIngredient}> Zutat Hinzufügen</button>
+                        </div>
+
                     </div>
                     <div>
-                        <label htmlFor={"making"}>making</label>
-                        <textarea name={"making"} id={"making"} cols={5} onChange={handleOnTextareaChange}/>
-                        <label htmlFor="vegetarian">Vegetarisch</label>
-                        <input type="checkbox" id="vegetarian" name="vegetarian" onChange={handleOnCheckBoxChange}/>
-                        <label htmlFor="vegan">Vegan</label>
-                        <input type="checkbox" id="vegan" name="vegan" onChange={handleOnCheckBoxChange}/>
+                        <label htmlFor={"making"}>Zubereitung</label>
+                        <textarea name={"making"} id={"making"} rows={10} cols={40}  onChange={handleOnTextareaChange}/>
+                        <div className={"inRow"}>
+                            <div>
+                                <label htmlFor="vegetarian">Vegetarisch</label>
+                                <input type="checkbox" id="vegetarian" name="vegetarian"
+                                       onChange={handleOnCheckBoxChange}/>
+                            </div>
+                            <div>
+                                <label htmlFor="vegan">Vegan</label>
+                                <input type="checkbox" id="vegan" name="vegan" onChange={handleOnCheckBoxChange}/>
+                            </div>
+
+                        </div>
+
                     </div>
-                    <button type={"submit"}>Abschicken</button>
+                    <div className={"FormButtonContainer"}>
+                        <button type={"submit"} className={"submitButton"}>Abschicken</button>
+                    </div>
+
                 </form>
-                <div>
+                <div className={"ingredientListContainer"}>
                     <ul>
                         {ingredients.map((ingredient, index) => (
-                            <li key={index}>{ingredient}</li>
+                            <li key={index} onClick={() => deleteIngredients(index)} className={"ingredientList"}>{ingredient}</li>
                         ))}
                     </ul>
                 </div>
@@ -109,7 +170,7 @@ export default function Startpage({receiptList, newReceipt, setNewReceipt, input
                             </div>
                         </div>
                         <div className={"foodImage"}>
-                            <img src={receipt.imageSrc} alt={"Picture"}/>
+                            <img src={receipt.imageSrc != "" ? receipt.imageSrc : BlankPic} alt={"Picture"}/>
                         </div>
                         <Link to={`/detail/${receipt.id}`} >
                             Mehr anzeigen

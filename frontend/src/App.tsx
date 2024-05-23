@@ -13,7 +13,6 @@ const [newReceipt, setNewReceipt] = useState<Receipt>({recipeName: "", additiona
 const [ingredients, setIngredients] = useState<string[]>([]);
 const [inputValue, setInputValue] = useState<string>('');
 
-//Ich weiß wie man Komponenten anlegt. Ich will erstmal schauen ob es funktioniert :D
 
 function apiCall(){
     axios.get("/api/boss")
@@ -37,7 +36,7 @@ function apiCall(){
 
     return (
     <>
-        <header>Hey</header>
+        <header><h1>BOSSKOCH</h1></header>
 
         <Routes>
             <Route path={"/"} element={<Startpage newReceipt={newReceipt} setNewReceipt={setNewReceipt} inputValue={inputValue} setInputValue={setInputValue} ingredients={ingredients} setIngredients={setIngredients} receiptList={receiptList}/>}/>
