@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -38,4 +39,14 @@ public class BossKochService {
     public BossKochModelReceipt getById(String id) {
         return repo.getById(id);
     }
+
+    public String deleteMovieById(String id) {
+        try {
+            repo.delete(repo.findById(id).orElseThrow());
+            return "Movie with ID " + id + " successfully deleted";
+        } catch (NoSuchElementException e){
+            return "Movie with ID " + id + " not found.";
+        }
+    }
+
 }
