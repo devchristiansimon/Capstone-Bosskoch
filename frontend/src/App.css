@@ -26,12 +26,18 @@ header h1{
 }
 
 .receiptCard{
+  position: relative;
   width: 400px;
   height: 400px;
   border: 1px solid black;
   padding: 5px;
   display: flex;
   flex-flow: column nowrap;
+}
+.garbageIcon{
+  position: absolute;
+  right: 0;
+  cursor: pointer;
 }
 
 .formfield{

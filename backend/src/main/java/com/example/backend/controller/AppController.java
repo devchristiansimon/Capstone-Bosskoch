@@ -28,4 +28,8 @@ public class AppController {
     BossKochModelReceipt getTodoById(@PathVariable String id) {
         return bossKochService.getById(id);
     }
+    @DeleteMapping("{id}")
+    public String deleteMovieById(@PathVariable String id) {
+        return bossKochService.deleteMovieById(id);
+    }
 }

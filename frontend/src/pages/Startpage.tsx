@@ -59,6 +59,15 @@ export default function Startpage({receiptList, newReceipt, setNewReceipt, input
         setIngredients(newIngredientsList);
     };
 
+    function deleteReceipt(i:number){
+        axios.delete("/api/boss/" + receiptList[i].id)
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log(error.message)
+            })
+    }
 
     return(
         <>
@@ -159,6 +168,7 @@ export default function Startpage({receiptList, newReceipt, setNewReceipt, input
             <div className={"receiptCardContainer"}>
                 {receiptList.map((receipt: Receipt, index) => (
                     <div key={index} className={"receiptCard"}>
+                        <div className={"garbageIcon"} onClick={()=>deleteReceipt(index)}>❌</div>
                         <div className={"receiptCardTitleContainer"}>
                             <div className={"receiptCardTitle"}>
                                 <p>{receipt.recipeName}</p>
@@ -172,7 +182,7 @@ export default function Startpage({receiptList, newReceipt, setNewReceipt, input
                         <div className={"foodImage"}>
                             <img src={receipt.imageSrc != "" ? receipt.imageSrc : BlankPic} alt={"Picture"}/>
                         </div>
-                        <Link to={`/detail/${receipt.id}`} >
+                        <Link to={`/detail/${receipt.id}`}>
                             Mehr anzeigen
                         </Link>
                     </div>
