@@ -4,6 +4,8 @@ import {Receipt} from "./Models/Receipt.ts";
 import axios from "axios";
 import Startpage from "./pages/Startpage.tsx";
 import DetailPage from "./pages/DetailPage.tsx";
+import AddReceipt from "./pages/AddReceipt.tsx";
+import Logo from "./assets/cook.png"
 
 import {Route, Routes} from "react-router-dom";
 
@@ -32,14 +34,16 @@ function apiCall(){
         setNewReceipt({...newReceipt, ingredients: ingredients})
     }, [ingredients])
 
-
-
     return (
     <>
-        <header><h1>BOSSKOCH</h1></header>
+        <header>
+            <img src={Logo} alt={"Logo"}/>
+            <h1>BOSSKOCH</h1>
+        </header>
 
         <Routes>
-            <Route path={"/"} element={<Startpage newReceipt={newReceipt} setNewReceipt={setNewReceipt} inputValue={inputValue} setInputValue={setInputValue} ingredients={ingredients} setIngredients={setIngredients} receiptList={receiptList}/>}/>
+            <Route path={"/"} element={<Startpage receiptList={receiptList}/>}/>
+            <Route path={"/new"} element={<AddReceipt newReceipt={newReceipt} setNewReceipt={setNewReceipt} inputValue={inputValue} setInputValue={setInputValue} ingredients={ingredients} setIngredients={setIngredients} receiptList={receiptList}/>}/>
             <Route path={"/detail/:id"} element={<DetailPage />} />
         </Routes>
     </>
