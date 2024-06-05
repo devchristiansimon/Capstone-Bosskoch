@@ -5,8 +5,42 @@ header{
 }
 
 header h1{
-  font-size: 4rem;
+  font-size: 5.3rem;
   margin: 0;
+  display: inline;
+}
+header img {
+  width: 100px;
+  display: inline;
+}
+
+.filtercontainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+.filterInput {
+  border-radius: 10px;
+  border: 0;
+  height: 40px;
+  width: 40%;
+  font-size: larger;
+}
+
+.linkContainer{
+  margin-top: 80px;
+  display: flex;
+  justify-content: end;
+  font-family: "Arial Black";
+  font-size: large;
+}
+
+body {
+  background-color: darkolivegreen;
+  color: ghostwhite;
+}
+a{
+  color: white;
 }
 
 .receiptCardContainer{
@@ -14,6 +48,7 @@ header h1{
   flex-flow: row wrap;
   gap: 30px;
   justify-content: center;
+
 }
 
 .receiptCardTitleContainer {
@@ -29,10 +64,12 @@ header h1{
   position: relative;
   width: 400px;
   height: 400px;
-  border: 1px solid black;
+  border-radius: 10px;
   padding: 5px;
   display: flex;
   flex-flow: column nowrap;
+  background-color: #607c3c;
+
 }
 .garbageIcon{
   position: absolute;
@@ -80,10 +117,11 @@ header h1{
   text-align: center;
 }
 .foodImage img{
-  height: 90%;
+  height: 100%;
 }
 .ingredientListContainer {
   text-align: center;
+  color: darkgreen;
 }
 .ingredientList{
   cursor: crosshair;
@@ -93,4 +131,23 @@ header h1{
   background-color: lightgray;
   border-radius: 5px;
   padding: 5px;
+}
+
+.detailContainer{
+  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Arial Black";
+}
+.detailContainer img{
+  width: 400px;
+}
+
+.detailContainer ul {
+  margin-top: 5px;
+}
+
+.veganContainer{
+  display: flex;
+  gap: 100px;
 }
